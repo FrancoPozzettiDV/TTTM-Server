@@ -42,9 +42,6 @@ namespace Server
             this.conexion = client;
         }
 
-        private void generarJugada()
-        {
-
-        }
+        
     }
 }

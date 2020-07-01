@@ -66,6 +66,8 @@ namespace Server
                     {
                         Jugador jugador = JsonConvert.DeserializeObject<Jugador>(dataFromClient);
                         jugador.setConexion(clientSocket);
+                        Partida.setTcpClients(clientSocket);
+
                         //Depende del mensaje que mande un usuario, el servidor realiza una acción distinta
                         switch (jugador.mensaje)
                         {
@@ -93,7 +95,8 @@ namespace Server
                     }
                     else
                     {
-                        //Deserializar mensaje que no es jugador en otra cosa...
+                        Partida.interpretarMensaje(dataFromClient,clientSocket);
+                        //Mensajes provenientes de la partida
                     }
 
                     

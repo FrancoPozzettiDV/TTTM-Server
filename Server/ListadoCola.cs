@@ -38,9 +38,13 @@ namespace Server
                     //Se obtiene la conexion del rival y se setea la conexion de ambos en null para que se pueda serializar y enviar
                     TcpClient conexion = player.conexion;
 
+                    Partida.setJugador1(player);
+                    Partida.verificarConexiones1(player);
                     player.conexion = null;
                     rival = JsonConvert.SerializeObject(player);
 
+                    Partida.setJugador2(jugador);
+                    Partida.verificarConexiones2(jugador);
                     jugador.conexion = null;
                     juga = JsonConvert.SerializeObject(jugador);
 
