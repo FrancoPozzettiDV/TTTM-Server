@@ -12,6 +12,7 @@ namespace Server
         public static List<TcpClient> conexiones = new List<TcpClient>();
         static TcpClient tcp1;
         static TcpClient tcp2;
+        static bool check;
 
         public static void interpretarMensaje(string msj, TcpClient client)
         {
@@ -29,18 +30,23 @@ namespace Server
                 }
 
             }
-            else if (msj.Equals("fin"))
+            else if (msj.Equals("wait"))
             {
-                enviarMensaje("ok", j1.conexion);
-                enviarMensaje("ok", j2.conexion);
-                j1 = null;
-                j2 = null;
+                check = true;
             }
             else
             {
                 if (client == j1.conexion)
                 {
-                    enviarMensaje(msj, j2.conexion);
+                    if (check)
+                    {
+                        enviarMensaje(msj, j2.conexion);
+                        check = false;
+                    }
+                    else
+                    {
+                        enviarMensaje(msj, j2.conexion);
+                    }
                 }
                 else if (client == j2.conexion)
                 {
