@@ -18,23 +18,36 @@ namespace Server
         {
             setConexion();
 
-            if (msj.Equals("start"))
+            if (msj.Equals("start")) //Ambos jugadores entran al tablero
             {
                 if (client.Equals(j1.conexion))
                 {
-                    enviarMensaje("Comenzar", j1.conexion);
+                    enviarMensaje("Comenzar", j1.conexion); //Jugador 1 (el que entro primero a la cola) hace la primera jugada
                 }
                 else if (client.Equals(j2.conexion))
                 {
-                    enviarMensaje("Esperar", j2.conexion);
+                    enviarMensaje("Esperar", j2.conexion); //Jugador 2 tiene que esperar a Jugador 1 para hacer su jugada
                 }
 
             }
-            else if (msj.Equals("wait"))
+            else if (msj.Equals("wait")) //Jugador 2 envía un wait para que pueda recibir la primera jugada
             {
                 check = true;
             }
-            else
+            else if (msj.Equals("fin")) //Mensajes de finalización de partida
+            {
+                if (client.Equals(j1.conexion))
+                {
+                    enviarMensaje("Fin", j2.conexion);
+                    enviarMensaje("ok", j1.conexion);
+                }
+                else if (client.Equals(j2.conexion))
+                {
+                    enviarMensaje("Fin", j1.conexion);
+                    enviarMensaje("ok", j1.conexion);
+                }
+            }
+            else //Por aca van los movimientos o nombres de las fichas que los jugadores presionan
             {
                 if (client == j1.conexion)
                 {
