@@ -44,14 +44,16 @@ namespace Server
 
         private void doChat()
         {
-
-            string dataFromClient = null;
-
-            Byte[] sendBytes = null;
-            string serverResponse = null;
-
-            while (true)
+            try
             {
+
+                string dataFromClient = null;
+
+                Byte[] sendBytes = null;
+                string serverResponse = null;
+
+                while (true)
+                {
                     // Recibi mensaje
                     byte[] bytesFrom = new byte[4];
                     NetworkStream networkStream = clientSocket.GetStream();
@@ -60,7 +62,7 @@ namespace Server
                     bytesFrom = new byte[buffersize];
                     networkStream.Read(bytesFrom, 0, bytesFrom.Length);
                     dataFromClient = System.Text.Encoding.ASCII.GetString(bytesFrom);
-                    
+
                     //Verifico si es un usuario
                     if (dataFromClient.Contains("usuario"))
                     {
@@ -79,30 +81,31 @@ namespace Server
                             case 1:
                                 string rival = ListadoCola.getInstancia().entrarCola(jugador);
                                 System.Console.WriteLine("Jugador " + jugador.usuario + " ha ingresado a la cola");
-                                if (rival != "") 
+                                if (rival != "")
                                 {
-                                //Se envia al rival y se vuelve a setear la conexion para que no quede en null
-                                enviarMensaje(rival);
-                                jugador.setConexion(clientSocket);
+                                    //Se envia al rival y se vuelve a setear la conexion para que no quede en null
+                                    enviarMensaje(rival);
+                                    jugador.setConexion(clientSocket);
                                 }
                                 break;
                             case 2:
                                 ListadoCola.getInstancia().salirCola(jugador);
                                 System.Console.WriteLine("Jugador " + jugador.usuario + " ha salido de la cola");
                                 enviarMensaje("ok");
+                                Partida.reiniciarChecks();
                                 break;
                         }
                     }
                     else
                     {
-                        Partida.interpretarMensaje(dataFromClient,clientSocket);
+                        Partida.interpretarMensaje(dataFromClient, clientSocket);
                         //Mensajes provenientes de la partida
                     }
 
-                    
 
 
-                    
+
+
                     void enviarMensaje(string mensaje)
                     {
                         serverResponse = mensaje;
@@ -112,10 +115,14 @@ namespace Server
                         networkStream.Write(sendBytes, 0, sendBytes.Length);
                         networkStream.Flush();
                     }
-                
-                
-            }
 
+
+                }
+            }
+            catch (System.IO.IOException)
+            {
+                Console.WriteLine("Un usuario se ha desconectado");
+            }
         }
         
 

@@ -24,9 +24,9 @@ El usuario debe crear una cuenta. Cada usuario comienza con 1000 puntos y el val
 El servidor encontrará una partida para los usuarios y coordinará todos los movimientos entre los jugadores.
 ### 3. Iniciar Cliente 
 El usuario debe ingresar los datos necesarios para iniciar sesión.
-### 2. Presionar Jugar
+### 4. Presionar Jugar
 El usuario debe presionar en "jugar" para entrar a la cola de jugadores mientras que el programa busca un digno oponente que tenga una cantidad similar de puntos.
-### 3. ¡Jugar!
+### 5. ¡Jugar!
 Los jugadores entran al tablero y comienza la partida. Terminado la partida, el ganador obtendrá 20 puntos y el perdedor obtendrá 20 puntos menos.
 
 
@@ -76,9 +76,9 @@ The user must create an account. Each user starts with 1000 points and the value
 The server will find a match for the users and coordinate all the moves between the players.
 ### 3. Launch the client
 The user must enter the necessary data to log in.
-### 2. Press Play
+### 4. Press Play
 The user must press "play" to enter the queue of players while the program searches for a worthy opponent with a similar amount of points.
-### 3. ¡Play!
+### 5. ¡Play!
 The players enter the board and the game begins. When the game is over, the winner gets 20 points and the loser gets 20 points less.
 
 

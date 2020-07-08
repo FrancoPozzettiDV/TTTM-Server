@@ -13,6 +13,8 @@ namespace Server
         static TcpClient tcp1;
         static TcpClient tcp2;
         static bool check;
+        static bool j1check;
+        static bool j2check;
 
         public static void interpretarMensaje(string msj, TcpClient client)
         {
@@ -38,13 +40,23 @@ namespace Server
             {
                 if (client.Equals(j1.conexion))
                 {
-                    enviarMensaje("Fin", j2.conexion);
+                    j1check = true; //j1check y j2check se utilizan porque solo uno de los dos jugadores necesita el mensaje de fin. 
+                    if (!j2check)
+                    {
+                        enviarMensaje("Fin", j2.conexion);
+                    }
+                    
                     enviarMensaje("ok", j1.conexion);
                 }
-                else if (client.Equals(j2.conexion))
+                else
                 {
-                    enviarMensaje("Fin", j1.conexion);
-                    enviarMensaje("ok", j1.conexion);
+                    j2check = true; //si no se ponen los checks, uno de los dos va a tener el mensaje de fin en su buffer y no va a funcionar buscar un nuevo jugador.
+                    if (!j1check)
+                    {
+                        enviarMensaje("Fin", j1.conexion);
+                    }
+                    
+                    enviarMensaje("ok", j2.conexion);
                 }
             }
             else //Por aca van los movimientos o nombres de las fichas que los jugadores presionan
@@ -80,6 +92,11 @@ namespace Server
             networkStream.Flush();
         }
 
+        public static void reiniciarChecks()
+        {
+            j1check = false;
+            j2check = false;
+        }
 
         public static void setJugador1(Jugador player)
         {
