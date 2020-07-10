@@ -29,7 +29,14 @@ namespace Server
 
         public float calcularPorcentaje()
         {
-            return (this.partidasGanadas * 100) / this.partidasJugadas;
+            if(this.partidasJugadas == 0)
+            {
+                return 0;
+            }
+            else
+            {
+                return (this.partidasGanadas * 100) / this.partidasJugadas;
+            }  
         }
 
         public void setMensaje(int msg)
