@@ -75,7 +75,7 @@ namespace Server
                         {
                             case 0:
                                 System.Console.WriteLine("Jugador " + jugador.usuario + " ha ingresado al servidor");
-                                System.Console.WriteLine("Id: " + jugador.id + "/ Nombre: " + jugador.usuario + "/ Puntaje: " + jugador.puntaje + "/ Victorias: " + jugador.calcularPorcentaje() + "%" + "/ Mensaje: " + jugador.mensaje);
+                                System.Console.WriteLine("Id: " + jugador.id + "/ Nombre: " + jugador.usuario + "/ Puntaje: " + jugador.puntaje + "/ Victorias: " + jugador.calcularPorcentaje() + "%");
                                 enviarMensaje("ok");
                                 break;
                             case 1:
