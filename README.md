@@ -54,7 +54,7 @@ De la confusión y el horror, cada uno volvió con su pueblo. Y ambos lideres de
 Tic-Tac-Toe Masters is a competitive online game where two players fight in tic-tac-toe matches to earn points and increase their victories.
 Are you ready to compete?
 
-### Project for educational purposes
+### Project made for educational purposes
 **Institute** : [Da Vinci School](https://www.davinci.edu.ar)
 **Professor** : [Christian Dario Nievas](https://www.github.com/CDNievas)
 
